@@ -83,7 +83,7 @@ if __name__ == "__main__":
 
     # Loads vocab.
     vocab = Vocab.from_json(args.vocab_path)
-    label_map = {0: "negative", 1: "positive"}
+    label_map = {0: "negative",1: "neura", 2: "positive"}
 
     # Constructs the newtork.
     network = args.network.lower()
