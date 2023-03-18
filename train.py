@@ -81,16 +81,28 @@ def create_dataloader(dataset, trans_fn=None, mode="train", batch_size=1, batchi
     return dataloader
 
 
+def my_read(data_path):
+    with open(data_path, 'r', encoding='utf-8') as f:
+        # 跳过列名
+        next(f)
+        for line in f:
+            words, labels = line.strip('\n').split('\t')
+            yield {'text': words, 'label': labels}
+
 if __name__ == "__main__":
     paddle.set_device(args.device)
     set_seed(1000)
-
+    
     # Loads dataset.
-    train_ds, dev_ds = load_dataset("chnsenticorp", splits=["train", "dev"])
+    train_ds = load_dataset(my_read, data_path='./data/train.csv',lazy=False)
+    dev_ds = load_dataset(my_read, data_path='./data/dev.csv',lazy=False)
+    test_ds = load_dataset(my_read, data_path='./data/test.csv',lazy=False)
     texts = []
     for data in train_ds:
         texts.append(data["text"])
     for data in dev_ds:
+        texts.append(data["text"])
+    for data in test_ds:
         texts.append(data["text"])
 
     # Reads stop words.
@@ -106,7 +118,7 @@ if __name__ == "__main__":
     # Constructs the network.
     network = args.network.lower()
     vocab_size = len(vocab)
-    num_classes = len(train_ds.label_list)
+    num_classes = 3
     pad_token_id = vocab.to_indices("[PAD]")
     if network == "bow":
         model = BoWModel(vocab_size, num_classes, padding_idx=pad_token_id)
@@ -155,14 +167,17 @@ if __name__ == "__main__":
     dev_loader = create_dataloader(
         dev_ds, trans_fn=trans_fn, batch_size=args.batch_size, mode="validation", batchify_fn=batchify_fn
     )
+    test_loader = create_dataloader(
+        test_ds, trans_fn=trans_fn, batch_size=args.batch_size, mode="test", batchify_fn=batchify_fn
+    )
 
     optimizer = paddle.optimizer.Adam(parameters=model.parameters(), learning_rate=args.lr)
 
     # Defines loss and metric.
     criterion = paddle.nn.CrossEntropyLoss()
     metric = paddle.metric.Accuracy()
-
-    model.prepare(optimizer, criterion, metric)
+    # auc = paddle.metric.Auc()
+    model.prepare(optimizer, criterion, metrics=metric)
 
     # Loads pre-trained parameters.
     if args.init_from_ckpt:
@@ -170,5 +185,8 @@ if __name__ == "__main__":
         print("Loaded checkpoint from %s" % args.init_from_ckpt)
 
     # Starts training and evaluating.
-    callback = paddle.callbacks.ProgBarLogger(log_freq=10, verbose=3)
+    # callback = paddle.callbacks.ProgBarLogger(log_freq=10, verbose=3)
+    callback = paddle.callbacks.VisualDL(log_dir='visualdl_log_dir/' + network)
     model.fit(train_loader, dev_loader, epochs=args.epochs, save_dir=args.save_dir, callbacks=callback)
+    test_result = model.evaluate(test_loader, 16,callbacks=callback)
+    print(test_result)
