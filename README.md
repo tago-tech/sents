@@ -277,8 +277,17 @@ Data: 非常不错，服务很好，位于市中心区，交通方便，不过�
 Data: 怀着十分激动的心情放映，可是看着看着发现，在放映完毕后，出现一集米老鼠的动画片      Label: negative
 Data: 作为老的四星酒店，房间依然很整洁，相当不错。机场接机服务很好，可以在车上办理入住手续，节省时间。      Label: positive
 ```
+## how use visualdl
+see: https://github.com/PaddlePaddle/VisualDL/blob/develop/README_CN.md
 
-## Reference
+install visualdl if you need: python -m pip install visualdl -i https://mirror.baidu.com/pypi/simple
+
+visualdl --logdir ${your_path_to_visualdl_log}
+
+for example: visualdl --logdir visualdl_log_dir/rnn/vdlrecords.167914
+
+
+## paper-peference
 
 关于LSTM、GRU、CNN更多信息参考：
 
