@@ -190,3 +190,4 @@ if __name__ == "__main__":
     model.fit(train_loader, dev_loader, epochs=args.epochs, save_dir=args.save_dir, callbacks=callback)
     test_result = model.evaluate(test_loader, 16,callbacks=callback)
     print(test_result)
+    model.save(path='model/' + network)
