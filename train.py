@@ -186,8 +186,16 @@ if __name__ == "__main__":
 
     # Starts training and evaluating.
     # callback = paddle.callbacks.ProgBarLogger(log_freq=10, verbose=3)
-    callback = paddle.callbacks.VisualDL(log_dir='visualdl_log_dir/' + network)
-    model.fit(train_loader, dev_loader, epochs=args.epochs, save_dir=args.save_dir, callbacks=callback)
-    test_result = model.evaluate(test_loader, 16,callbacks=callback)
+    visualdl_callback = paddle.callbacks.VisualDL(log_dir='visualdl_log_dir/' + network)
+    earlystopping_callback = paddle.callbacks.EarlyStopping(
+                'acc',
+                mode='auto',
+                patience=1,
+                verbose=1,
+                min_delta=0,
+                baseline=0,
+                save_best_model=True)
+    model.fit(train_loader, dev_loader, epochs=args.epochs, save_dir=args.save_dir, callbacks=[visualdl_callback, earlystopping_callback])
+    test_result = model.evaluate(test_loader, 16,callbacks=[visualdl_callback, earlystopping_callback])
     print(test_result)
     model.save(path='model/' + network)
