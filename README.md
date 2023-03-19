@@ -115,6 +115,15 @@ rnn/
 ├── train.py # 训练模型主程序入口，包括训练、评估
 └── README.md # 文档说明
 ```
+### Env(linux or windows)
+1. see here to install conda: https://www.paddlepaddle.org.cn/documentation/docs/zh/install/conda/linux-conda.html#anchor-0 
+
+2. use conda to create python env
+    2.1 conda create -n paddle_env python=3.8
+    2.2 conda activate paddle_env
+3. install paddle env
+    3.1 conda install paddlepaddle==2.4.2 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
+    3.2  
 
 ### 数据准备
 
@@ -157,41 +166,6 @@ python -m paddle.distributed.launch --gpus "0" train.py \
     --save_dir='./checkpoints'
 ```
 
-XPU 启动：
-
-```shell
-python train.py --vocab_path='./vocab.json' \
-    --device=xpu \
-    --network=lstm \
-    --lr=5e-4 \
-    --batch_size=64 \
-    --epochs=10 \
-    --save_dir='./checkpoints'
-```
-
-MLU 启动：
-
-```shell
-python train.py --vocab_path='./vocab.json' \
-    --device=mlu \
-    --network=lstm \
-    --lr=5e-4 \
-    --batch_size=64 \
-    --epochs=10 \
-    --save_dir='./checkpoints'
-```
-
-Ascend NPU 启动：
-
-```shell
-python train.py --vocab_path='./vocab.json' \
-    --device=npu \
-    --network=bow \
-    --lr=5e-4 \
-    --batch_size=32 \
-    --epochs=10 \
-    --save_dir='./checkpoints'
-```
 
 以上参数表示：
 
