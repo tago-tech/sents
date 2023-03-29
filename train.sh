@@ -54,3 +54,14 @@ python train.py --vocab_path='./vocab.json' \
     --save_dir='./checkpoints/birnn/checkpoints' >> output/birnn.train.log.`date +%Y-%m-%d-%h-%m-%hh-%mm`
 cp -r checkpoints/birnn/checkpoints/final.* output/birnn/checkpoints/
 rm -r checkpoints/birnn/checkpoints/*
+
+echo "start train [bilstm_attn] model"
+python train.py --vocab_path='./vocab.json' \
+    --device=cpu \
+    --network=bilstm_attn \
+    --lr=5e-4 \
+    --batch_size=64 \
+    --epochs=10 \
+    --save_dir='./checkpoints/bilstm_attn/checkpoints' >> output/bilstm_attn.train.log.`date +%Y-%m-%d-%h-%m-%hh-%mm`
+cp -r checkpoints/bilstm_attn/checkpoints/final.* output/bilstm_attn/checkpoints/
+rm -r checkpoints/bilstm_attn/checkpoints/*
