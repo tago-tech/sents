@@ -13,7 +13,7 @@ echo "start train [cnn] model"
 python train.py --vocab_path='./vocab.json' \
     --device=cpu \
     --network=cnn \
-    --lr=5e-4 \
+    --learn_rate=5e-4 \
     --batch_size=16 \
     --epochs=10 \
     --save_dir='./checkpoints/cnn/checkpoints' >> output/cnn.train.log.`date +%Y-%m-%d-%h-%m`
