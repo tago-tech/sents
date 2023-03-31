@@ -1,0 +1,98 @@
+<!-- <html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>INDEX</title>
+  </head>
+  <body>
+    <form action="http://43.142.161.208:9001/result" method="POST">
+      <p>Text: <input type="text" name="text" /></p>
+      <p><input type="submit" value="提交" /></p>
+    </form>
+  </body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+ 
+<head>
+    <meta charset="utf-8">
+    <title> Emotional Analysis </title>
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_1309180_m0vigzfu7y.css">
+    <style type="text/css">
+        .bod1 {
+            /*background: -webkit-linear-gradient(to right, #f7797d, #FBD786, #C6FFDD);*/
+            /*background-image: url(" 2558.jpg");*/
+            /*background-size:cover;*/
+            background: #aa4b6b;
+            /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #3b8d99, #6b6b83, #aa4b6b);
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #3b8d99, #6b6b83, #aa4b6b);
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+ 
+ 
+        }
+ 
+        .search-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #FD2C6B;
+            height: 40px;
+            border-radius: 30px;
+            /*圆角边框*/
+            padding: 10px;
+        }
+ 
+        .search-box:hover>.search-text {
+            width: 400px;
+        }
+ 
+        .search-box:hover>.search-btn {
+            background: white;
+            color: #26087b;
+        }
+ 
+        .search-btn {
+ 
+            color: white;
+            float: right;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #FD2C6B;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.5s;
+        }
+ 
+        .search-text {
+            border: none;
+            background: none;
+            outline: none;
+            float: left;
+            padding: 0;
+            color: white;
+            font-size: 20px;
+            font-family: "Microsoft YaHei UI Light";
+            transition: 0.5s;
+            line-height: 40px;
+            width: 0px;
+ 
+        }
+    </style>
+</head>
+ 
+<body class="bod1">
+
+</body>
+<script>
+   function as() {
+   let e = document.getElementsByClassName('search-text').inputs
+   console.log(e)
+   }
+</script>
+</html>
