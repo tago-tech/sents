@@ -241,7 +241,7 @@ python app.py
 ## 如何使用visualdl去可视化训练过程
 visualdl -t 0.0.0.0 -p 9001 --logdir /home/ubuntu/sents/visualdl_log_dir/cnn/
 其中0.0.0.0的意思是外网可以访问，9001的意思是端口是9001， 可以把/home/ubuntu/sents/visualdl_log_dir/cnn/替换成/home/ubuntu/sents/visualdl_log_dir/lstm/去查看lstm模型的训练可视化。
-如果看不到数据，或者数据不对，就用 rm -r /home/ubuntu/sents/visualdl_log_dir/${your_network}/
+如果看不到数据，或者数据不对，就用 rm -r /home/ubuntu/sents/visualdl_log_dir/${your_network}/，清空历史的数据就行。
 
 ## 如何开始训练（手动）
 可以参考train.sh
