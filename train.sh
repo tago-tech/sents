@@ -1,5 +1,14 @@
 #!/bin/bash
 
+cd /home/ubuntu/sents
+
+echo "init python env"
+source ~/.bashrc
+conda activate paddle_cpu
+
+echo "support feedback.csv"
+cat date/feedback.csv >> train.csv
+
 echo "start train [cnn] model"
 python train.py --vocab_path='./vocab.json' \
     --device=cpu \
