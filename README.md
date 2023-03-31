@@ -264,6 +264,13 @@ bash -x train.sh
 conda activate paddle_cpu
 如果提示没有conda，则输入 source ~/.bashrc 之后再重试。
 
+## 如何一键误改动的代码
+git restore .
+
+## crontab 
+crontab -e 编辑后台任务
+crontab -l 查看后台任务
+
 ## 论文引用，关于LSTM、GRU、CNN更多信息参考：
 
 - https://canvas.stanford.edu/files/1090785/download
