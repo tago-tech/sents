@@ -234,36 +234,37 @@ python predict.py --vocab_path='./vocab.json' \
     --params_path='./checkpoints/final.pdparams'
 ```
 
-将待预测数据分词完毕后，如以下示例：
+## 如何启动web服务器（网站）
+python app.py
+默认会开启9001端口。浏览器中输入 http://${ip}:9001/index  就可以访问。
 
-```text
-非常不错，服务很好，位于市中心区，交通方便，不过价格也高！
-怀着十分激动的心情放映，可是看着看着发现，在放映完毕后，出现一集米老鼠的动画片
-作为老的四星酒店，房间依然很整洁，相当不错。机场接机服务很好，可以在车上办理入住手续，节省时间。
+## 如何使用visualdl去可视化训练过程
+visualdl -t 0.0.0.0 -p 9001 --logdir /home/ubuntu/sents/visualdl_log_dir/cnn/
+其中0.0.0.0的意思是外网可以访问，9001的意思是端口是9001， 可以把/home/ubuntu/sents/visualdl_log_dir/cnn/替换成/home/ubuntu/sents/visualdl_log_dir/lstm/去查看lstm模型的训练可视化。
+如果看不到数据，或者数据不对，就用 rm -r /home/ubuntu/sents/visualdl_log_dir/${your_network}/
+
+## 如何开始训练（手动）
+可以参考train.sh
+例如训练cnn模型
+```shell
+python train.py --vocab_path='./vocab.json' \
+    --device=cpu \
+    --network=cnn \
+    --learn_rate=5e-4 \
+    --batch_size=16 \
+    --epochs=10 \
+    --save_dir='./checkpoints/cnn/checkpoints'
 ```
 
-处理成模型所需的`Tensor`，如可以直接调用`preprocess_prediction_data`函数既可处理完毕。之后传入`predict`函数即可输出预测结果。
+## 如何开始批量训练训练
+bash -x train.sh
+-x的能看到更多输出信息
 
-如
+## 如何激活paddle_cpu
+conda activate paddle_cpu
+如果提示没有conda，则输入 source ~/.bashrc 之后再重试。
 
-```text
-Data: 非常不错，服务很好，位于市中心区，交通方便，不过价格也高！      Label: negative
-Data: 怀着十分激动的心情放映，可是看着看着发现，在放映完毕后，出现一集米老鼠的动画片      Label: negative
-Data: 作为老的四星酒店，房间依然很整洁，相当不错。机场接机服务很好，可以在车上办理入住手续，节省时间。      Label: positive
-```
-## how use visualdl
-see: https://github.com/PaddlePaddle/VisualDL/blob/develop/README_CN.md
-
-install visualdl if you need: python -m pip install visualdl -i https://mirror.baidu.com/pypi/simple
-
-visualdl --logdir ${your_path_to_visualdl_log}
-
-for example: visualdl --logdir visualdl_log_dir/rnn/vdlrecords.167914
-
-
-## paper-peference
-
-关于LSTM、GRU、CNN更多信息参考：
+## 论文引用，关于LSTM、GRU、CNN更多信息参考：
 
 - https://canvas.stanford.edu/files/1090785/download
 - https://colah.github.io/posts/2015-08-Understanding-LSTMs/
