@@ -115,7 +115,7 @@ def predict(model, data, label_map, batch_size=1, pad_token_id=0):
     return results
 
 model_map = {}
-for network in ["cnn", "lstm", "bilstm", "bow"]:
+for network in ["cnn", "lstm", "bilstm", "bilstm_attn","rnn", "birnn"]:
     print("try to load network: %s" % network)
     model_instance = load_model(network)
     if model_instance is not None:
@@ -151,4 +151,4 @@ def fallback():
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host="0.0.0.0", port=9001)

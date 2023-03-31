@@ -1,12 +1,135 @@
-<html>
- <head>
- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
- <title>INDEX</title>
- </head>
-    <body>
-        <form action = "http://localhost:5000/result" method = "POST">
-            <p>Text: <input type = "text" name = "text" /></p>
-            <p><input type = "submit" value = "提交" /></p>
-         </form>
-    </body>
- </html>
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Emotional Analysis</title>
+
+    <link
+      href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+
+        padding: 0;
+
+        background: #494a5f;
+
+        font-weight: 500;
+
+        font-family: "Microsoft YaHei", "宋体", "Segoe UI", "Lucida Grande",
+          Helvetica, Arial, sans-serif, FreeSans, Arimo;
+      }
+
+      #container {
+        width: 500px;
+
+        height: 820px;
+
+        margin: 0 auto;
+      }
+
+      div.search {
+        padding: 30px 0;
+      }
+
+      form {
+        position: relative;
+
+        width: 600px;
+
+        margin: 0 auto;
+      }
+
+      input,
+      button {
+        border: none;
+
+        outline: none;
+      }
+
+      input {
+        width: 100%;
+
+        height: 42px;
+
+        padding-left: 13px;
+      }
+
+      button {
+        height: 42px;
+
+        width: 42px;
+
+        cursor: pointer;
+
+        position: absolute;
+      }
+
+      /*搜索框7*/
+
+      .bar7 {
+        background: #7ba7ab;
+      }
+
+      .bar7 form {
+        height: 42px;
+      }
+
+      .bar7 input {
+        width: 250px;
+
+        border-radius: 42px;
+
+        border: 2px solid #324b4e;
+
+        background: #f9f0da;
+
+        transition: 0.3s linear;
+
+        float: right;
+      }
+
+      .bar7 input:focus {
+        width: 300px;
+      }
+
+      .bar7 button {
+        background: none;
+
+        top: -2px;
+
+        right: 0;
+      }
+
+      .bar7 button:before {
+        content: "\f002";
+
+        font-family: FontAwesome;
+
+        color: #324b4e;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="search bar7">
+      <form action="http://43.142.161.208:9001/result" method="POST">
+        <input type="text" placeholder="请输入您要搜索的内容..." name="text" />
+        <button type="submit"></button>
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,41 +1,121 @@
 <html>
- <head>
- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
- <title>Flask模板示例</title>
- </head>
-    <body>
-        {{text}}
-       <hr /> 
-       <table border = 1>
-        <tr>
-            <th>model</th>
-            <td>result</td>
-        </tr>
-          {% for key, value in result.items() %}
-             <tr>
-                <th>{{ key }} </th>
-                <td>{{ value }} </td>
-             </tr>
-          {% endfor %}
-       </table>
-    <hr /> 
-    <form action = "http://localhost:5000/fallback" method = "POST">
-        <input type="hidden" name="text" value="{{text}}" > 
-        <input type="hidden" name="result" value="negative" > 
-        <p><input type = "submit" value = "negative" /></p>
-     </form>
-     <hr /> 
-     <form action = "http://localhost:5000/fallback" method = "POST">
-        <input type="hidden" name="text" value="{{text}}" > 
-        <input type="hidden" name="result" value="neura" > 
-        <p><input type = "submit" value = "neura" /></p>
-     </form>
-     <hr /> 
-     <form action = "http://localhost:5000/fallback" method = "POST">
-        <input type="hidden" name="text" value="{{text}}" > 
-        <input type="hidden" name="result" value="positive" > 
-        <p><input type = "submit" value = "positive" /></p>
-     </form>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Emotional Analysis</title>
+  </head>
+  <body>
+    {{text}}
+    <hr />
 
-    </body>
- </html>
+    <style type="text/css">
+      body,
+      table {
+        font-size: 12px;
+      }
+
+      table {
+        table-layout: fixed;
+
+        empty-cells: show;
+
+        border-collapse: collapse;
+
+        margin: 0 auto;
+      }
+
+      td {
+        height: 30px;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-size: 12px;
+
+        margin: 0;
+
+        padding: 0;
+      }
+
+      .table {
+        border: 1px solid #cad9ea;
+
+        color: #666;
+      }
+
+      .table th {
+        background-repeat: repeat-x;
+
+        height: 30px;
+      }
+
+      .table td,
+      .table th {
+        border: 1px solid #cad9ea;
+
+        padding: 0 1em 0;
+      }
+
+      .table tr.alter {
+        background-color: #f5fafe;
+      }
+    </style>
+
+    <table width="90%" class="table">
+      <tr>
+        <th>network</th>
+
+        <th>result</th>
+      </tr>
+
+      {% for key, value in result.items() %}
+      <tr class="alter">
+        <th>{{ key }}</th>
+        <td>{{ value }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <hr type="hidden"/>
+    <hr type="hidden"/>
+
+    <style>
+      .button {
+        background-color: #4caf50; /* Green */
+        border: none;
+        color: white;
+        padding: 8px 14px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+      }
+    </style>
+
+    <table>
+    <tr>
+      <th>
+        <form action="http://43.142.161.208:9001/fallback" method="POST">
+          <input type="hidden" name="text" value="{{text}}" />
+          <input type="hidden" name="result" value="neura" />
+          <p><input class="button" type="submit" value="neura" /></p>
+        </form>
+      </th>
+      <th>
+        <form action="http://43.142.161.208:9001/fallback" method="POST">
+          <input type="hidden" name="text" value="{{text}}" />
+          <input type="hidden" name="result" value="negative" />
+          <p><input class="button" type="submit" value="negative" /></p>
+        </form>
+      </th>
+      <th>
+        <form action="http://43.142.161.208:9001/fallback" method="POST">
+          <input type="hidden" name="text" value="{{text}}" />
+          <input type="hidden" name="result" value="positive" />
+          <p><input class="button" type="submit" value="positive" /></p>
+        </form>
+      </th>
+    </tr>
+    </table>
+  </body>
+</html>
