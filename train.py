@@ -71,7 +71,6 @@ def create_dataloader(dataset, trans_fn=None, mode="train", batch_size=1, batchi
 def my_read(data_path):
     with open(data_path, 'r', encoding='utf-8') as f:
         # 跳过列名
-        next(f)
         for line in f:
             words, labels = line.strip('\n').split('\t')
             yield {'text': words, 'label': labels}
