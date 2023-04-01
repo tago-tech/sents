@@ -30,7 +30,9 @@ paddle.set_device(args.device.lower())
 
 # Loads vocab.
 vocab = Vocab.from_json(args.vocab_path)
-label_map = {0: "negative",1: "neura", 2: "positive"}
+label_map = {0: "negative",1: "neutral", 2: "positive"}
+label_to_int_map = {"negative" : 0, "neutral": 1, "positive" : 2}
+
 vocab_size = len(vocab)
 num_classes = len(label_map)
 pad_token_id = vocab.to_indices("[PAD]")
@@ -147,7 +149,10 @@ def result():
 
 @app.route('/fallback', methods = ['POST'])
 def fallback():
-    print("text=" + request.form["text"] + ", result=" + request.form["result"])
+    print("feedback text=" + request.form["text"] + ", result=" + request.form["result"])
+    if request.form["result"] in label_to_int_map:
+        with open("data/feedback.csv", "a") as feedback_out:
+            print("{}\t{}".format(request.form["text"], label_to_int_map[request.form["result"]]), file=feedback_out)
     return redirect(url_for('index'))
 
 if __name__ == '__main__':

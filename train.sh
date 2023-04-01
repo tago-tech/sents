@@ -7,8 +7,8 @@ source ~/.bashrc
 conda activate paddle_cpu
 
 echo "support feedback.csv"
-cat date/feedback.csv >> train.csv
-rm date/feedback.csv
+cat data/feedback.csv >> data/train.csv
+rm data/feedback.csv
 
 echo "start train [cnn] model"
 python train.py --vocab_path='./vocab.json' \
@@ -37,7 +37,7 @@ python train.py --vocab_path='./vocab.json' \
     --device=cpu \
     --network=bilstm \
     --lr=5e-4 \
-    --batch_size=16 \
+    --batch_size=8 \
     --epochs=10 \
     --save_dir='./checkpoints/bilstm/checkpoints' >> output/bilstm.train.log.`date +%Y-%m-%d-%h-%m-%hh-%mm`
 cp -r checkpoints/bilstm/checkpoints/final.* output/bilstm/checkpoints/
@@ -59,7 +59,7 @@ python train.py --vocab_path='./vocab.json' \
     --device=cpu \
     --network=birnn \
     --lr=5e-4 \
-    --batch_size=16 \
+    --batch_size=8 \
     --epochs=10 \
     --save_dir='./checkpoints/birnn/checkpoints' >> output/birnn.train.log.`date +%Y-%m-%d-%h-%m-%hh-%mm`
 cp -r checkpoints/birnn/checkpoints/final.* output/birnn/checkpoints/
@@ -70,7 +70,7 @@ python train.py --vocab_path='./vocab.json' \
     --device=cpu \
     --network=bilstm_attn \
     --lr=5e-4 \
-    --batch_size=16 \
+    --batch_size=8 \
     --epochs=10 \
     --save_dir='./checkpoints/bilstm_attn/checkpoints' >> output/bilstm_attn.train.log.`date +%Y-%m-%d-%h-%m-%hh-%mm`
 cp -r checkpoints/bilstm_attn/checkpoints/final.* output/bilstm_attn/checkpoints/
