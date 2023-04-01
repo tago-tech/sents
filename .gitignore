@@ -9,3 +9,4 @@ visualdl_log_dir/
 *.pyc
 checkpoints/*
 model/*
+vocab.json
