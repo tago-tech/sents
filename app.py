@@ -38,7 +38,7 @@ num_classes = len(label_map)
 pad_token_id = vocab.to_indices("[PAD]")
 
 def load_model(network):
-    param_path = "output/{}/checkpoints/final.pdparams".format(network)
+    param_path = "output/{}/checkpoints/best_model.pdparams".format(network)
     if not os.path.exists(param_path):
         print("can not found param for network=%s, skip load it" % network)
         return None
